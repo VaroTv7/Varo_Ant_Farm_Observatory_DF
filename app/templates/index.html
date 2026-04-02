@@ -1,34 +1,62 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="page-header">
-  <h1>{% if world %}{{ world.name }}{% else %}{{ t('stat_world_prep') }}{% endif %}</h1>
-  <p class="subtitle">{{ t('index_subtitle') }}</p>
-</div>
 
 {% if not world %}
-<div class="empty-state">
-  <div class="empty-icon">⛏</div>
-  <h2>{{ t('index_empty_title') }}</h2>
-  <p>{{ t('index_empty_text') }}</p>
-</div>
+  <div class="data-panel" style="text-align: center; color: var(--danger)">
+    <h2>NO DATA DETECTED / ESPERANDO DATOS</h2>
+    <p>El backend está en modo Watchdog esperando legends.xml</p>
+  </div>
 {% else %}
-<div class="stats-grid">
-  <div class="stat-card">
-    <div class="stat-number">{{ world.civilizations|length }}</div>
-    <div class="stat-label">{{ t('stat_civs') }}</div>
+  <!-- Stats row -->
+  <div class="data-grid">
+    <div class="data-panel">
+      <div class="data-label">{{ t('stat_civs') }}</div>
+      <div class="data-value">{{ stats.civs }}</div>
+    </div>
+    <div class="data-panel">
+      <div class="data-label">{{ t('stat_heroes') }}</div>
+      <div class="data-value">{{ stats.heroes }}</div>
+    </div>
+    <div class="data-panel">
+      <div class="data-label">{{ t('stat_arts') }}</div>
+      <div class="data-value">{{ stats.artifacts }}</div>
+    </div>
+    <div class="data-panel">
+      <div class="data-label">{{ t('stat_events') }}</div>
+      <div class="data-value">{{ stats.events }}</div>
+    </div>
   </div>
-  <div class="stat-card">
-    <div class="stat-number">{{ world.heroes|length }}</div>
-    <div class="stat-label">{{ t('stat_heroes') }}</div>
+
+  <!-- Favorites/Tracking panel -->
+  <div class="data-panel">
+    <h3 style="color:var(--accent-gold); margin-top:0;">SEGUIMIENTO DE OBJETIVOS (TRACKLIST)</h3>
+    {% if favorites %}
+      <table class="sim-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>RAZA</th>
+            <th>ACCIÓN</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for f in favorites %}
+          <tr id="row-{{ f.id }}">
+            <td>#{{ f.id }}</td>
+            <td><a href="/figure/{{ f.id }}" style="color:var(--accent-cyan); text-decoration: none; font-weight: bold;">{{ f.name }}</a></td>
+            <td style="color:var(--text-secondary)">{{ f.race }}</td>
+            <td>
+              <button class="btn-track active" onclick="toggleTrack('figure', {{ f.id }})">UNTRACK</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p style="color:var(--text-secondary)">No hay objetivos marcados. Ve a Héroes o Civilizaciones para fijar familias o personajes.</p>
+    {% endif %}
   </div>
-  <div class="stat-card">
-    <div class="stat-number">{{ world.artifacts|length }}</div>
-    <div class="stat-label">{{ t('stat_arts') }}</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-number">{{ world.historical_events|length }}</div>
-    <div class="stat-label">{{ t('stat_events') }}</div>
-  </div>
-</div>
+
 {% endif %}
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="data-panel" style="margin-bottom: 2rem;">
+  <h2 style="color:var(--accent-cyan); margin-top:0;">REGISTRO DE CIVILIZACIONES Y FACCIONES</h2>
+  <p style="color:var(--text-secondary)">{{ civs|length }} entitidades soberanas registradas en los archivos.</p>
+</div>
+
+<div class="data-panel" style="max-height: 600px; overflow-y: auto;">
+  <table class="sim-table" id="civs-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>RAZA</th>
+        <th>TIPO</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in civs %}
+      <tr>
+        <td>#{{ c.id }}</td>
+        <td style="color:var(--text-primary); font-weight:bold;">{{ c.name }}</td>
+        <td>{{ c.race }}</td>
+        <td style="color:var(--text-secondary); font-size: 0.8rem;">{{ c.type.replace('_', ' ').upper() }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

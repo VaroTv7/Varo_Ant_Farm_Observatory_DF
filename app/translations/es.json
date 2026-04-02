@@ -21,5 +21,6 @@
   "oracle_welcome": "Soy el Cronista de <strong>{{name}}</strong>. He presenciado el nacimiento de {{civs}} civilizaciones y el destino de {{heroes}} almas. ¿Qué deseas saber sobre este mundo?",
   "oracle_input_placeholder": "Pregunta sobre héroes, civilizaciones, guerras, artefactos...",
   "oracle_btn": "Consultar",
-  "oracle_loading": "El Cronista consulta los archivos..."
+  "oracle_loading": "El Cronista consulta los archivos...",
+  "stat_world_prep": "Mundo en preparación"
 }

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="data-panel" style="margin-bottom: 2rem;">
+  <h2 style="color:var(--accent-cyan); margin-top:0;">CRONOLOGÍA DE {{ world.name|upper }}</h2>
+  <p style="color:var(--text-secondary)">Archivos de eventos históricos registrados por el mundo.</p>
+</div>
+
+<div class="data-panel" style="max-height: 700px; overflow-y: auto;">
+  <div class="timeline" style="border-left: 2px solid var(--border); margin-left: 2rem; padding: 1rem;">
+    {% for ev in events %}
+    <div style="margin-bottom: 1.5rem; position: relative;">
+      <span style="position: absolute; left: -1.6rem; top: 0; width: 12px; height: 12px; background: var(--accent-cyan); border-radius: 50%;"></span>
+      <div style="margin-left: 1.5rem;">
+        <span style="color:var(--accent-gold); font-weight:bold; font-size: 0.9rem;">AÑO {{ ev.year }}</span>
+        <div style="padding: 0.5rem; background: var(--bg-card); border: 1px solid #334; font-size: 0.9rem; margin-top: 0.3rem;">
+          {{ ev.type.replace('_', ' ').upper() }}
+          {% if ev.description %}
+            <p style="color:var(--text-secondary); margin-top: 0.5rem; font-style: italic;">{{ ev.description }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

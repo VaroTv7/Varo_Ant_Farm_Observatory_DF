@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="data-panel" style="margin-bottom: 2rem;">
+  <h2 style="color:var(--accent-cyan); margin-top:0;">BASE DE DATOS: ENTIDADES HISTÓRICAS</h2>
+  <input type="text" id="search-input" placeholder="Buscar por nombre o raza..." style="width:100%; padding: 0.5rem; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border);">
+</div>
+
+<div class="data-panel" style="max-height: 600px; overflow-y: auto;">
+  <table class="sim-table" id="heroes-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>RAZA</th>
+        <th>CASTA</th>
+        <th>ESTADO</th>
+        <th>TRACKING</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for h in heroes %}
+      <tr>
+        <td>#{{ h.id }}</td>
+        <td><a href="/figure/{{ h.id }}" style="color:var(--text-primary); font-weight:bold; text-decoration: none;">{{ h.name }}</a></td>
+        <td>{{ h.race }}</td>
+        <td>{{ h.caste }}</td>
+        <td>
+          {% if h.active %}
+            <span style="color: var(--accent-cyan)">VIVO</span>
+          {% else %}
+            <span style="color: var(--danger)">M. (Año {{ h.death_year }})</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if h.id in favs %}
+          <button class="btn-track active" onclick="toggleTrack('figure', '{{ h.id }}', this)">TRACKING ON</button>
+          {% else %}
+          <button class="btn-track" onclick="toggleTrack('figure', '{{ h.id }}', this)">TRACK</button>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+// Filtro visual rápido
+document.getElementById('search-input').addEventListener('keyup', function() {
+  let filter = this.value.toLowerCase();
+  let rows = document.querySelectorAll('#heroes-table tbody tr');
+  rows.forEach(row => {
+    let name = row.children[1].innerText.toLowerCase();
+    let race = row.children[2].innerText.toLowerCase();
+    if(name.includes(filter) || race.includes(filter)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+});
+</script>
+{% endblock %}

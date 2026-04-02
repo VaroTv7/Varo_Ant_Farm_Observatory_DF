@@ -32,7 +32,8 @@ services:
       sh -c "pip install flask anthropic flask-babel --quiet && python app.py"
     volumes:
       - ./app:/app
-      - ./data:/data:ro
+      - ./data:/data
+      - ./df-game/df_linux/data:/df-data:ro
     ports:
       - "${PORT_OBSERVATORY:-8090}:5000"
     environment:
