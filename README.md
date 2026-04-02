@@ -1,17 +1,15 @@
-# ⛏ Ant Farm Observatory (ES/EN)
+# ⛏ Ant Farm Observatory (v2.0.0)
 
-**Dwarf Fortress 24/7 + Web Observatory with IA integrated**
-**Dwarf Fortress 24/7 + Observatorio web con IA integrada**
+**Dwarf Fortress 24/7 + Web Observatory with AI RAG integrated**
+**Dwarf Fortress 24/7 + Observatorio web con IA RAG integrada**
 
 ---
 
 ### [ES] Descripción (Español)
-
-Un mundo de Dwarf Fortress corriendo de forma autónoma en tu servidor, con un observatorio web para seguir la historia de civilizaciones, héroes y artefactos — y un Oráculo IA que conoce toda la historia del mundo y responde tus preguntas como un Cronista Omnisciente.
+Ant Farm Observatory v2 es un sistema de monitoreo autónomo para mundos de Dwarf Fortress. Esta versión profesional utiliza un motor de datos de alto rendimiento basado en **SQLite** e **iterparse**, permitiendo seguir la historia de mundos masivos sin colapsar la memoria del servidor. Incluye un **Oráculo IA** con "Conciencia de Datos" (RAG) capaz de consultar la base de datos en tiempo real mediante *Tool Calling* de Anthropic Claude 3.5.
 
 ### [EN] Description (English)
-
-A Dwarf Fortress world running autonomously on your server, with a web observatory to follow the history of civilizations, heroes, and artifacts — and an AI Oracle that knows the entire history of the world and answers your questions like an Omniscient Chronicler.
+Ant Farm Observatory v2 is an autonomous monitoring system for Dwarf Fortress worlds. This professional version uses a high-performance data engine based on **SQLite** and **iterparse**, allowing history tracking of massive worlds without collapsing server memory. It includes an **AI Oracle** with "Data Awareness" (RAG) capable of querying the database in real-time via Anthropic's Claude 3.5 *Tool Calling*.
 
 ---
 
@@ -19,17 +17,20 @@ A Dwarf Fortress world running autonomously on your server, with a web observato
 
 ```bash
 # [ES] Instalación rápida / [EN] Quick Install
-curl -fsSL https://raw.githubusercontent.com/VaroTv7/Varo_Ant_Farm_Observatory_DF/main/install.sh | bash
+git clone https://github.com/VaroTv7/Varo_Ant_Farm_Observatory_DF.git
+cd Varo_Ant_Farm_Observatory_DF
+./install.sh
 ```
 
 ---
 
-## 🛠 Arquitectura / Architecture
+## 🔥 Novedades de la V2 / V2 New Features
 
-- **Motor / Motor**: Dwarf Fortress v50.14 (Webtop)
-- **Observatorio / Observatory**: Flask (Python 3.12)
-- **IA**: Anthropic Claude API (Sonnet 3.5)
-- **Automatización / Automation**: DFHack v50.14-r1
+- **[ES] Panel de Simulación / [EN] Simulation Dashboard**: Interfaz rediseñada con barra lateral, estadísticas densas y modo oscuro.
+- **[ES] Seguimiento de Linajes / [EN] Lineage Tracking**: Navegación por árboles genealógicos y dossiers detallados de héroes.
+- **[ES] Watchdog Nativo / [EN] Native Watchdog**: Sincronización automática de `legends.xml` sin necesidad de Cron en el host.
+- **[ES] Búsquedas SQLite / [EN] SQLite Search**: Búsqueda instantánea y filtrado de miles de figuras históricas.
+- **[ES] Oráculo Mejorado / [EN] Enhanced Oracle**: IA con acceso directo a la base de datos (Tool Calling).
 
 ---
 
@@ -39,6 +40,16 @@ curl -fsSL https://raw.githubusercontent.com/VaroTv7/Varo_Ant_Farm_Observatory_D
 |---------------------|---------------|-------------|
 | Webtop (DF)         | 8080          | [ES] Acceso web al juego / [EN] Web access to game |
 | Observatory         | 8090          | [ES] Crónicas e IA / [EN] Chronicles and AI |
+
+---
+
+## 🛠 Tecnologías / Technologies
+
+- **Engine / Motor**: Dwarf Fortress v50.14 (Webtop)
+- **Database / Base de Datos**: SQLite 3
+- **Observatory / Observatorio**: Flask (Python 3.12) + `iterparse` (XML Streaming)
+- **AI / IA**: Anthropic Claude 3.5 (Sonnet) with **Tool Calling**
+- **Automation / Automatización**: Python Watchdog + DFHack
 
 ---
 
