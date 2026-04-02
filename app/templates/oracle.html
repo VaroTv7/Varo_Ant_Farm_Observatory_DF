@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+  <h1>{{ t('oracle_title') }}</h1>
+  <p class="subtitle">{{ t('oracle_subtitle') }}</p>
+</div>
+
+<div class="oracle-container">
+  <div class="chat-window" id="chat-window">
+    <div class="chat-message assistant">
+      <div class="chat-bubble">
+        {% if world %}
+          {{ t('oracle_welcome', name=world.name, civs=world.civilizations|length, heroes=world.heroes|length) | safe }}
+        {% else %}
+          {{ t('index_empty_title') }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <textarea id="user-input" placeholder="{{ t('oracle_input_placeholder') }}" rows="2"></textarea>
+    <button id="send-btn">{{ t('oracle_btn') }}</button>
+  </div>
+</div>
+{% endblock %}

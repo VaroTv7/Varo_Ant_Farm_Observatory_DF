@@ -1,0 +1,86 @@
+:root {
+  --bg: #0f0e0c;
+  --bg2: #1a1916;
+  --bg3: #242320;
+  --border: #333230;
+  --text: #e8e4d9;
+  --text2: #9a9589;
+  --accent: #c8a84b;
+  --accent2: #8b6914;
+  --oracle: #7c5cbf;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Georgia', serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.nav {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  color: var(--accent);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.nav-links a {
+  color: var(--text2);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.main {
+  flex: 1;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.footer {
+  background: var(--bg2);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text2);
+  border-top: 1px solid var(--border);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--bg2);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.stat-label {
+  color: var(--text2);
+  font-size: 0.9rem;
+}

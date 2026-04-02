@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ g.lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ t('nav_title') }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="nav-logo">{{ t('nav_title') }}</a>
+    <div class="nav-links">
+      <a href="/">{{ t('nav_home') }}</a>
+      <a href="/heroes">{{ t('nav_heroes') }}</a>
+      <a href="/civilizations">{{ t('nav_civs') }}</a>
+      <a href="/artifacts">{{ t('nav_artifacts') }}</a>
+      <a href="/timeline">{{ t('nav_timeline') }}</a>
+      <a href="/oracle" class="nav-oracle">{{ t('nav_oracle') }}</a>
+    </div>
+  </nav>
+  <main class="main">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">
+    {{ t('footer_text') }}
+    {% if world %}· {{ t('footer_world') }}: <strong>{{ world.name }}</strong> · {{ t('footer_updated') }}: {{ world.last_updated }}{% endif %}
+  </footer>
+</body>
+</html>

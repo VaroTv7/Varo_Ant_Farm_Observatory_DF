@@ -1,0 +1,46 @@
+services:
+
+  df-antfarm:
+    image: lscr.io/linuxserver/webtop:ubuntu-xfce
+    container_name: df-antfarm
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TIMEZONE:-Europe/Madrid}
+      - TITLE=Dwarf Fortress AntFarm
+    volumes:
+      - ./df-container/config:/config
+      - ./df-game:/juego
+      - ./data:/legends-export
+    ports:
+      - "${PORT_WEBTOP:-8080}:3000"
+    shm_size: "1gb"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 2G
+    restart: unless-stopped
+
+  antfarm-observatory:
+    image: python:3.12-slim
+    container_name: antfarm-observatory
+    working_dir: /app
+    command: >
+      sh -c "pip install flask anthropic flask-babel --quiet && python app.py"
+    volumes:
+      - ./app:/app
+      - ./data:/data:ro
+    ports:
+      - "${PORT_OBSERVATORY:-8090}:5000"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - APP_LANG=${APP_LANG:-es}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 256M
+    restart: unless-stopped
